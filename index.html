@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodePilot — AI Code Assistant</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">⌘ Code<span>Pilot</span></div>
+  <div class="badge">AI Code Assistant</div>
+  <p>Write code, get suggestions, generate from a prompt — locally, no API key.</p>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <h3>Language</h3>
+    <div class="langbtns">
+      <button data-lang="python" class="active">Python</button>
+      <button data-lang="javascript">JavaScript</button>
+      <button data-lang="html">HTML</button>
+    </div>
+    <h3>Snippet library</h3>
+    <div id="snippets"></div>
+    <h3>Recent prompts</h3>
+    <div class="history" id="history">No prompts yet.</div>
+  </aside>
+
+  <main class="editor">
+    <div class="editorhead">
+      <div>
+        <h2>Editor — <span id="langLabel">Python</span></h2>
+        <p>Type a pattern like <b>for</b>, <b>def</b> or <b>fetch</b> and press <b>Tab</b> to accept the suggestion.</p>
+      </div>
+      <div class="tools">
+        <button class="toolbtn" id="sampleBtn">Load sample</button>
+        <button class="toolbtn" id="copyBtn">Copy code</button>
+        <button class="toolbtn" id="clearBtn">Clear</button>
+      </div>
+    </div>
+
+    <div class="editwrap">
+      <div class="gutter" id="gutter">1</div>
+      <textarea id="code" spellcheck="false" placeholder="Write code here..."></textarea>
+    </div>
+
+    <div class="suggest" id="suggest">
+      <span>✦ Suggestion: </span><code id="suggestText"></code>
+      <button class="primary" id="acceptBtn">Accept (Tab)</button>
+    </div>
+
+    <div class="promptbox">
+      <label for="prompt">Prompt to code</label>
+      <div class="promptrow">
+        <input id="prompt" type="text" placeholder="e.g. Python me login function banao">
+        <button class="primary" id="generateBtn">Generate code</button>
+      </div>
+      <div class="examples">
+        Try:
+        <button class="chip" data-prompt="Python me login function banao">Python login</button>
+        <button class="chip" data-prompt="JavaScript me array sort karo">JS array sort</button>
+        <button class="chip" data-prompt="Python me fibonacci banao">Python fibonacci</button>
+        <button class="chip" data-prompt="JavaScript me fetch API use karo">JS fetch API</button>
+      </div>
+    </div>
+  </main>
+
+  <aside class="aipanel">
+    <h3>AI panel</h3>
+    <div class="ai-actions">
+      <button class="toolbtn" id="explainBtn">Explain code</button>
+      <button class="toolbtn" id="bugBtn">Find bug</button>
+      <button class="toolbtn" id="refactorBtn">Refactor</button>
+      <button class="ghostbtn" id="applyRefactorBtn">Apply refactor</button>
+    </div>
+    <div id="aiout">Load a sample, then click Explain code, Find bug or Refactor. Results appear here.</div>
+    <p style="color:var(--muted);font-size:12.5px;line-height:1.6">Honest note: CodePilot is a local template / pattern demo. It is <b>not</b> a large language model and not the real GitHub Copilot. See README for the upgrade path.</p>
+  </aside>
+</div>
+
+<footer class="footer">
+  <b>Honest note:</b> CodePilot is a local, template-based demo — not an LLM, not the real GitHub Copilot. If a real LLM API key is added later, the same prompt-to-code flow could call it. No API key or backend is required for this demo.
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
